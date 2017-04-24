@@ -10,6 +10,7 @@ def main():
 
     inputs = [server]
     outputs = []
+    clients = {}
     messages = []
 
     while True:
@@ -20,10 +21,12 @@ def main():
                 client, address = server.accept()
                 print('{0}:{1} connected'.format(*address))
                 inputs.append(client)
+                clients[client] = address
             else:
                 message = sock.recv(1024)
                 if message:
                     messages.append(message)
+                    print('Message received from {0}:{1}: {2}'.format(*clients[sock], message.decode()))
                 if sock not in outputs:
                     outputs.append(sock)
 
@@ -35,6 +38,7 @@ def main():
 
         for sock in except_list:
             inputs.remove(sock)
+            print('{0}:{1} disconnected'.format(*clients[sock]))
             if sock in outputs:
                 outputs.remove(sock)
             sock.close()
