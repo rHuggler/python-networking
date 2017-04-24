@@ -20,7 +20,7 @@ def main():
     thread.start()
 
     while True:
-        message = input('> ').encode('ascii')
+        message = input('').encode('ascii')
         client.send(message)
 
 if __name__ == '__main__':
