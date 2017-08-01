@@ -1,5 +1,5 @@
 # python-networking
-#### Networking projects using sockets
+#### Networking using sockets
 
 - rot13/**rot13_server.py**
   - Simple TCP Server for a single client which returns the *rot13* cypher of the received data.
